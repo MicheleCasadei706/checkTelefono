@@ -23,8 +23,11 @@ Tornare ""
 etc
 
 ## Codice
-
-### Il codice del programma si divide in:
+Questo programma fornisce una funzione di controllo per determinare se una serie di stringhe rappresenta numeri di telefono italiani validi.
+### Il codice del programma si divide in tre parti:
+<details>
+<summary>Check</summary>
+    
 ```c#
 public static class Telefono
 {
@@ -41,12 +44,32 @@ public static class Telefono
         }
         return "";
     }
+```
+Il metodo Check accetta un array di stringhe input che rappresentano una serie di numeri di telefono.<br>
+Itera attraverso ciascun numero nella matrice input.<br>
+Chiama il metodo RimuoviSpaziETrattini per rimuovere eventuali spazi e trattini dalla stringa del numero.<br>
+Successivamente, chiama il metodo EUnNumeroDiTelefonoItaliano per verificare se il numero pulito è un numero di telefono italiano valido.<br>
+Se trova un numero di telefono italiano valido, restituisce quel numero.<br>
+In caso contrario, continua a cercare nella lista. Se non trova alcun numero di telefono italiano valido, restituisce una stringa vuota.
+</details>
 
+<details>
+    <summary>Rimuovi spazi e trattini</summary>
+    
+```c#
     private static string RimuoviSpaziETrattini(string numero)
     {
         return numero.Replace(" ", "").Replace("-", "");
     }
+```
+l metodo RimuoviSpaziETrattini riceve una stringa numero come input e rimuove tutti gli spazi e i trattini dalla stringa.
+Restituisce la stringa "pulita" senza spazi e trattini.
+</details>
 
+<details>
+    <summary>Numero di telefono italiano</summary>
+    
+```c#
     private static bool NumeroDiTelefonoItaliano(string numero)
     {
         if (numero.StartsWith("+39") && numero.Length == 13)
@@ -65,4 +88,13 @@ public static class Telefono
         return false;
     }
 }
+
 ```
+Il metodo EUnNumeroDiTelefonoItaliano riceve una stringa numero come input e verifica se rappresenta un numero di telefono italiano valido.
+Effettua tre controlli:
+- Se la stringa inizia con "+39" ed è lunga 13 caratteri, ritorna true.
+- Se la stringa inizia con "0039" ed è lunga 14 caratteri, ritorna true.
+- Se la stringa inizia con "3" ed è lunga 10 caratteri, ritorna true.
+
+Se nessuno di questi tre controlli è soddisfatto, ritorna false.
+</details>
